@@ -1,0 +1,23 @@
+<!-- <app-admin-header
+  [themePrimary]="themeService.currentTheme()?.primary"
+  [themeItemNavbar]="themeService.currentTheme()?.itemNavBar"
+  [title]="currentCompany()"
+  [name]="username"
+  [isMenuOpened]="isShowSidebar()" /> -->
+<mat-sidenav-container class="w-full">
+  <!-- <app-modal-idle /> -->
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    [opened]="isShowSidebar()"
+    class="layout-sidebar mt-7"
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [fixedInViewport]="mobileQuery.matches">
+    <!-- <admin-sidebar
+      [baseColor]="themeService.currentTheme()?.general"
+      [accentColor]="themeService.currentTheme()?.accent" /> -->
+  </mat-sidenav>
+  <mat-sidenav-content class="layout-content mt-7 px-5">
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>

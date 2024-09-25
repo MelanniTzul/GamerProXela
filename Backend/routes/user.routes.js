@@ -9,13 +9,13 @@ const { check } = require("express-validator");
 //*Rutas
 router.post(
   "/iniciarSesion",
-  [
-    check("email", "El correo es obligatorio")
-      .isEmail()
-      .withMessage("El correo no es valido"),
-    check("password", "Contraseña obligatorio").isStrongPassword(),
-    ValidateInputs
-  ],
+  // [
+  //   check("username", "El correo es obligatorio")
+  //     .isR
+  //     .withMessage("El correo no es valido"),
+  //   check("password", "Contraseña obligatorio").isStrongPassword(),
+  //   ValidateInputs
+  // ],
   userController.login
 );
 

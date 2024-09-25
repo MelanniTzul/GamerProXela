@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 // import { ToastAlertService } from '@core/services';
-// import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Cookies } from 'typescript-cookie';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -36,7 +36,14 @@ interface Role {
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-page.component.html',
-  styles: [],
+  styles: [
+    `
+      .container {
+        background: #2a0e50;
+      }
+    `,
+  ],
+
   standalone: true,
   imports: [
     NgIf,
@@ -61,7 +68,7 @@ export class LoginPageComponent {
   loginForm!: FormGroup;
   validation: boolean = false;
   private formBuilder = inject(FormBuilder);
-  // private authService = inject(AuthService);
+  private authService = inject(AuthService);
   // private branchService = inject(BranchOfficeService);
   // private toasService = inject(ToastAlertService);
   private destroyRef = inject(DestroyRef);
@@ -101,30 +108,29 @@ export class LoginPageComponent {
 
   login() {
     if (this.loginForm.valid) {
-        // this.authService
-        //     .sendLogin(this.loginForm.value)
-        //     .pipe(takeUntilDestroyed(this.destroyRef))
-        //     .subscribe({
-        //         next: resp => {
-        //             // Verifica si la respuesta tiene un mensaje de éxito
-        //             if (resp.status === 200) {
-        //                 this.validation = true;
-        //                 // Puedes guardar el ID de trabajador o cualquier otra información aquí
-        //                 // this.branchService.saveBussinesId(resp.workerId);
-        //                 // Guarda el nombre de usuario en cookies
-        //                 Cookies.set('user', this.loginForm.controls['username'].value);
-        //                 this.router.navigateByUrl('/admin/dashboard');
-        //                 this.toasService.warning('¡Bienvenido! ' + resp.username);
-        //             } else {
-        //                 // Si la respuesta no es un mensaje de éxito, muestra el mensaje de error
-        //                 this.toasService.error(resp.status);
-        //             }
-        //         },
-        //         error: err => {
-        //             // Maneja errores de la petición (errores de red, etc.)
-        //             this.toasService.error('Error de conexión, intente nuevamente.');
-        //         }
-        //     });
+        this.authService
+            .sendLogin(this.loginForm.value)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: resp => {
+                    // Verifica si la respuesta tiene un mensaje de éxito
+                    if (resp.status === "OK") {
+                        // Puedes guardar el ID de trabajador o cualquier otra información aquí
+                        // this.branchService.saveBussinesId(resp.workerId);
+                        // Guarda el nombre de usuario en cookies
+                        Cookies.set('user', this.loginForm.controls['username'].value);
+                        this.router.navigateByUrl('/home/dashboard');
+                        // this.toasService.warning('¡Bienvenido! ' + resp.username);
+                    } else {
+                        // Si la respuesta no es un mensaje de éxito, muestra el mensaje de error
+                        // this.toasService.error(resp.status);
+                    }
+                },
+                error: err => {
+                    // Maneja errores de la petición (errores de red, etc.)
+                    // this.toasService.error('Error de conexión, intente nuevamente.');
+                }
+            });
     } else {
         // this.toasService.error('Por favor, completa todos los campos requeridos.');
     }

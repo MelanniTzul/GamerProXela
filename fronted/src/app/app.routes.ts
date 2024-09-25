@@ -7,12 +7,12 @@ export const routes: Routes = [
     loadChildren: () =>
       import('src/app/public/public.routes').then(m => m.PublicRoutes),
   },
-  // {
-  //   path: 'admin',
-  //   // canActivate: [isAuthenticatedGuard],
-  //   loadChildren: () =>
-  //     import('src/app/admin/admin.routes').then(m => m.AdminRoutes),
-  // },
+  {
+    path: 'home',
+    // canActivate: [isAuthenticatedGuard],
+    loadChildren: () =>
+      import('src/app/modules/modules.routes').then(m => m.ModulesRoutes),
+  },
   {
     path: '404',
     loadComponent: () =>

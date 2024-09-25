@@ -1,0 +1,212 @@
+<mat-list class="w-20rem md:w-23rem">
+  <mat-list-item
+    class="item flex cursor-pointer w-auto pl-5"
+    routerLink="/admin/dashboard"
+    routerLinkActive="active-link">
+    <div>
+      <mat-icon
+        class="mr-3"
+        >home</mat-icon
+      >
+      Inicio
+    </div>
+  </mat-list-item>
+  <!-- ADMINISTRADOR -->
+  @if (role() === '1') {
+    <mat-list-item
+      class="item flex cursor-pointer w-auto pl-5"
+      routerLink="/admin/general/country"
+      routerLinkActive="active-link">
+      <div >
+        <mat-icon
+          class="mr-3"
+
+          >flag_circle</mat-icon
+        >
+        Países
+      </div>
+    </mat-list-item>
+  }
+    <mat-list-item
+      class="flex cursor-pointer w-auto pl-5"
+      (click)="openGeneralElements()">
+      <div >
+        <div >
+          <mat-icon
+            class="mr-3"
+
+            >{{
+              isOpenGeneralElements() ? 'expand_less' : 'expand_more'
+            }}</mat-icon
+          >
+          Empresas
+        </div>
+      </div>
+    </mat-list-item>
+
+    <div>
+      @for (item of general; track item) {
+        @if (item.show) {
+          <mat-list-item
+            class="pl-6 flex cursor-pointer w-auto hover:bg-black-alpha-10"
+            [routerLink]="item.route"
+            routerLinkActive="active-link">
+            <div
+              >
+              <mat-icon
+                class="mr-2"
+
+                >{{ item.icon }}</mat-icon
+              >
+              {{ item.label }}
+            </div>
+          </mat-list-item>
+        }
+      }
+    </div>
+
+
+    <mat-list-item
+      class="flex cursor-pointer w-auto pl-5"
+      (click)="openReservationsElements()">
+      <div >
+        <!-- <mat-icon
+          class="mr-3"
+
+          >{{
+            isOpenReservationsElements() ? 'expand_less' : 'expand_more'
+          }}</mat-icon
+        > -->
+        Reservaciones
+      </div>
+    </mat-list-item>
+
+    <div>
+      @for (item of reservations; track item) {
+        @if (item.show) {
+          <mat-list-item
+            class="pl-6 flex cursor-pointer w-auto hover:bg-black-alpha-10"
+            [routerLink]="item.route"
+            routerLinkActive="active-link">
+            <div
+              >
+              <mat-icon
+                class="mr-2"
+
+                >{{ item.icon }}</mat-icon
+              >
+              {{ item.label }}
+            </div>
+          </mat-list-item>
+        }
+      }
+    </div>
+
+    <mat-list-item
+      class="flex cursor-pointer w-auto pl-5"
+      (click)="openGroupsElements()">
+      <div >
+        <mat-icon
+          class="mr-3"
+
+          >{{
+            isOpenGroupsElements() ? 'expand_less' : 'expand_more'
+          }}</mat-icon
+        >
+        Grupos
+      </div>
+    </mat-list-item>
+
+    <div>
+      @for (item of groups; track item) {
+        @if (item.show) {
+          <mat-list-item
+            class="pl-6 flex cursor-pointer w-auto hover:bg-black-alpha-10"
+            [routerLink]="item.route"
+            routerLinkActive="active-link">
+            <div
+              >
+              <mat-icon
+                class="mr-2"
+
+                >{{ item.icon }}</mat-icon
+              >
+              {{ item.label }}
+            </div>
+          </mat-list-item>
+        }
+      }
+    </div>
+
+    <mat-list-item
+      class="flex cursor-pointer w-auto pl-5"
+      (click)="openReportsElements()">
+      <div >
+        <mat-icon
+          class="mr-3"
+
+          >{{
+            isOpenReportsElements() ? 'expand_less' : 'expand_more'
+          }}</mat-icon
+        >
+        Reportes
+      </div>
+    </mat-list-item>
+
+    <div>
+      @for (item of reports; track item) {
+        @if (item.show) {
+          <mat-list-item
+            class="pl-6 flex cursor-pointer w-auto hover:bg-black-alpha-10"
+            [routerLink]="item.route"
+            routerLinkActive="active-link">
+            <div
+             >
+              <mat-icon
+                class="mr-2"
+
+                >{{ item.icon }}</mat-icon
+              >
+              {{ item.label }}
+            </div>
+          </mat-list-item>
+        }
+      }
+    </div>
+    <mat-list-item
+      class="flex cursor-pointer w-auto pl-5"
+      (click)="openToolsElements()">
+      <div >
+        <mat-icon
+          class="mr-3"
+
+          >{{ isOpenToolsElements() ? 'expand_less' : 'expand_more' }}</mat-icon
+        >
+        Configuración
+      </div>
+    </mat-list-item>
+  @if (isOpenToolsElements()) {
+    <div>
+      @for (item of tools; track item) {
+        @if (item.show) {
+          <mat-list-item
+            class="pl-6 flex cursor-pointer w-auto hover:bg-black-alpha-10"
+            [routerLink]="item.route"
+            routerLinkActive="active-link">
+            <div
+              >
+              <mat-icon
+                class="mr-2"
+
+                >{{ item.icon }}</mat-icon
+              >
+              {{ item.label }}
+            </div>
+          </mat-list-item>
+        }
+      }
+    </div>
+  }
+</mat-list>
+
+

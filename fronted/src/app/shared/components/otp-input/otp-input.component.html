@@ -1,0 +1,3 @@
+@for (input of inputs.controls; track input.value) {
+<input [formControl]="$any(input)" type="text" inputmode="numeric" />
+}

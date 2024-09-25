@@ -1,0 +1,100 @@
+@if (validation === false) {
+  <div class="flex flex-column p-4">
+    <div class="flex flex-column align-items-center justify-content-center">
+      <div style="width: 180px; height: 180px; position: relative">
+        <img
+          [ngSrc]="'/assets/img/icon-web.svg'"
+          mat-card-image
+          alt="Logo JobPoint Multi Empresas"
+          fill
+          priority />
+      </div>
+      <span class="text-3xl font-bold mb-2">Iniciar Sesión</span>
+      <span class="text-lg mb-3"
+        >Ingrese sus credenciales para acceder a su cuenta</span
+      >
+    </div>
+    <form [formGroup]="loginForm" (submit)="login()">
+      <mat-form-field class="w-full pt-2" color="accent" appearance="outline">
+        <mat-label color="accent">Usuario</mat-label>
+        <input formControlName="username" matInput />
+        <mat-icon matSuffix class="text-primary">account_circle</mat-icon>
+        @if (loginForm.controls['username'].hasError('required')) {
+          <mat-error>
+            <small>Usuario es <strong>requerido</strong> </small>
+          </mat-error>
+        }
+      </mat-form-field>
+      <br />
+      <mat-form-field color="accent" class="w-full pt-2" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          class="text-black"
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'" />
+        <a matSuffix mat-icon-button aria-label="Clear" (click)="hide = !hide">
+          <mat-icon class="text-primary">{{
+            hide ? 'visibility_off' : 'visibility'
+          }}</mat-icon>
+        </a>
+        @if (loginForm.controls['password'].hasError('required')) {
+          <mat-error>
+            <small>Contraseña es <strong>requerida</strong> </small>
+          </mat-error>
+        }
+      </mat-form-field>
+      <br />
+      <mat-form-field color="accent" class="w-full pt-2" appearance="outline">
+        <mat-label>Código de Empresa</mat-label>
+        <input class="text-black" formControlName="businessCode" matInput />
+        <mat-icon matSuffix class="text-primary">apartment</mat-icon>
+      </mat-form-field>
+      <div class="flex justify-content-end">
+        <p
+          class="text-red-500 cursor-pointer"
+          (click)="forgotPassword()"
+          (keydown.enter)="forgotPassword()"
+          tabindex="0">
+          Recuperar contraseña
+        </p>
+      </div>
+      <div
+        class="w-full flex flex-column align-items-center my-3 md:my-3 lg:my-4 xl:my-4">
+        <shared-button
+          [icon]="'login'"
+          [disabled]="!loginForm.valid"
+          [typeBtn]="'submit'"
+          color="accent"
+          >Continuar</shared-button
+        >
+      </div>
+    </form>
+    <mat-divider />
+    <p class="flex flex-row justify-content-center mt-2">O continúa con</p>
+    <div
+      class="w-full flex flex-row justify-content-center mt-3 md:mt-3 lg:mt-4 xl:mt-4 gap-3">
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="googleLogin()"
+        class="w-2">
+        <img class="h-1rem mt-2" src="/assets/icon/google.svg" alt="" />
+      </button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="microsoftLogin()"
+        class="w-2">
+        <img class="h-1rem mt-2" src="/assets/icon/microsoft.svg" alt="" />
+      </button>
+    </div>
+    <div class="flex flex-column align-items-center">
+      <p>{{ version() }}</p>
+    </div>
+  </div>
+}
+@if (validation) {
+  <app-validation (back)="backToLogin($event)" class="w-full" />
+}

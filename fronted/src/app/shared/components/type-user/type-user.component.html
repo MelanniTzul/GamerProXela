@@ -1,0 +1,52 @@
+<div class="mt-6">
+  <shared-title class="text-center"
+    >Selecciona el tipo de usuario:</shared-title
+  >
+  <br />
+  <div class="flex flex-wrap justify-content-center">
+    <div class="w-48 px-2 mb-4">
+      <label class="block">
+        <input type="radio" [(ngModel)]="userType" value="checkWeb" /> Usuario
+        Web
+      </label>
+    </div>
+    @if (this.data.role !== 'ACCESOS') {
+      <div class="w-48 px-2 mb-4">
+        <label class="block">
+          <input type="radio" [(ngModel)]="userType" value="checkApp" /> Usuario
+          Móvil
+        </label>
+      </div>
+      <div class="w-48 px-2 mb-4">
+        <label class="block">
+          <input type="radio" [(ngModel)]="userType" value="checkAppP" />
+          Usuario Móvil con Parqueo
+        </label>
+      </div>
+    }
+  </div>
+
+  <div class="flex flex-wrap justify-content-center">
+    <div class="w-48 flex justify-center mt-4">
+      <div class="mr-2">
+        <shared-button
+          mat-dialog-close
+          [typeBtn]="'button'"
+          [color]="'warn'"
+          [icon]="'cancel'"
+          >Cancelar</shared-button
+        >
+      </div>
+      <div>
+        <shared-button
+          [typeBtn]="'button'"
+          [color]="'accent'"
+          (click)="modalAction()"
+          [icon]="'add'"
+          >Agregar</shared-button
+        >
+      </div>
+    </div>
+  </div>
+  <br />
+</div>

@@ -1,0 +1,11 @@
+<button
+  [disabled]="disabled"
+  mat-flat-button
+  [type]="typeBtn"
+  [color]="color"
+  style="display: flex; align-items: center"
+  class="flex flex-row gap-1"
+  [ngStyle]="{ background: colorTheme() }">
+  <ng-content></ng-content>
+  <mat-icon>{{ icon }}</mat-icon>
+</button>

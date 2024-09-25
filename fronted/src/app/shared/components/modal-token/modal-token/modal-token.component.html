@@ -1,0 +1,30 @@
+<div style="
+    padding-top: 25px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 25px;
+  ">
+  <div class="flex justify-content-center">
+    <h2>Está por expirar la sesión</h2>
+  </div>
+  <div class="flex justify-content-center">
+    <p>¿Deseas renovar la sesión?</p>
+  </div>
+
+  <div class="flex justify-content-center mt-4">
+    <div class="countdown" id="countdown">
+      <svg viewBox="-50 -50 100 100" stroke-width="10">
+        <circle r="45"></circle>
+        <circle r="45" pathLength="1"></circle>
+      </svg>
+    </div>
+  </div>
+  <mat-dialog-actions class="flex justify-content-between pb-6">
+    <shared-button [icon]="'exit_to_app'" [color]="'accent'" style="margin: 10px" (click)="Cerrar()">
+      Cerrar Sesión
+    </shared-button>
+    <shared-button [icon]="'cached'" style="margin: 10px" [color]="'primary'" (click)="Refresh()">
+      Si
+    </shared-button>
+  </mat-dialog-actions>
+</div>

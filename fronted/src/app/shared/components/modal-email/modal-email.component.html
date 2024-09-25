@@ -1,0 +1,20 @@
+<div class="max-w-24rem">
+  <h1 mat-dialog-title class="flex flex-column align-items-center justify-content-center">
+    <div>
+      <mat-icon class="w-12 h-3rem" [style.fontSize.px]="45" color="warn">error_outline</mat-icon>
+    </div>
+    <div class="flex flex-wrap justify-content-center align-items-center text-center">
+      <p>
+        {{ message() }}
+      </p>
+    </div>
+  </h1>
+  <div mat-dialog-actions class="flex justify-content-center align-items-center gap-3 mb-3">
+    <shared-button [icon]="'clear'" [typeBtn]="'button'" [color]="'accent'" (click)="action(1)">
+      Cancelar
+    </shared-button>
+    <shared-button [icon]="'save_alt'" [typeBtn]="'button'" [color]="'warn'" (click)="action(0)">
+      {{ button() }}
+    </shared-button>
+  </div>
+</div>

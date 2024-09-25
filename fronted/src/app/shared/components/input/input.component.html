@@ -1,0 +1,14 @@
+<mat-form-field class="w-full {{ labelStyle }}" appearance="outline">
+  <mat-label>{{ labelTitle }}</mat-label>
+  <input
+    [style]="'text-transform:' + styleText.toLowerCase() + ';'"
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    matInput />
+  @if (control.touched) {
+  <mat-error>
+    <small customLabel [errors]="control.errors"></small>
+  </mat-error>
+  }
+</mat-form-field>

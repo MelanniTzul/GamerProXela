@@ -1,0 +1,46 @@
+<div class="flex flex-column">
+  <div class="flex flex-column align-items-center justify-content-center">
+    <div style="width: 180px; height: 180px; position: relative">
+      <img
+        [ngSrc]="'/assets/img/icon-web.svg'"
+        mat-card-image
+        alt="Logo JobPoint Multi Empresas"
+        fill
+        priority />
+    </div>
+    <span class="text-3xl font-bold mb-2">Código de verificación</span>
+    <span class="text-lg mb-3"
+      >Por favor ingresa el código de 5 dígitos que te enviamos a tu correo
+      electrónico</span
+    >
+  </div>
+
+  <form [formGroup]="validationForm" (submit)="sendValidation()">
+    <!-- <section class="grid gap-3 align-items-center">
+      <app-otp-input />
+    </section> -->
+    <mat-form-field color="accent" class="w-full" appearance="outline">
+      <mat-label>Código</mat-label>
+      <input class="text-black" formControlName="token" matInput />
+      @if (validationForm.controls['token'].hasError('required')) {
+        <mat-error>
+          <small>El código es <strong>requerido</strong> </small>
+        </mat-error>
+      }
+    </mat-form-field>
+    <div class="w-full flex flex-column align-items-center mt-2">
+      <shared-button
+        color="accent"
+        [typeBtn]="'submit'"
+        [disabled]="!validationForm.valid"
+        [icon]="'send'"
+        >Verificar</shared-button
+      >
+    </div>
+  </form>
+  <div class="flex flex-column mt-6 sm:mt-7 md:mt-5 lg:mt-7 xl:mt-7">
+    <shared-button [icon]="'arrow_back'" [color]="'primary'" (click)="return()">
+      Regresar
+    </shared-button>
+  </div>
+</div>

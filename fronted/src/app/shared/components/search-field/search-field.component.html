@@ -1,0 +1,11 @@
+<mat-form-field subscriptSizing="dynamic" appearance="outline">
+  <mat-label>Buscar</mat-label>
+  <input (keyup)="applyFilter($event)" #input matInput />
+  @if (input.value != '') {
+  <button mat-icon-button (click)="input.value = ''; emit('')" matSuffix>
+    <mat-icon>cancel</mat-icon>
+  </button>
+  } @if (!input.value) {
+  <mat-icon matSuffix>search</mat-icon>
+  }
+</mat-form-field>

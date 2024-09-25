@@ -1,0 +1,68 @@
+@if (validation === false) {
+  <div class="flex flex-column p-4">
+    <div class="flex flex-column align-items-center justify-content-center">
+      <h3><strong>GamerProXela</strong></h3>
+      <span class="text-3xl font-bold mb-2">Iniciar Sesión</span>
+      <span class="text-lg mb-3"
+        >Ingrese sus credenciales para acceder a su cuenta</span
+      >
+    </div>
+    <form [formGroup]="loginForm" (submit)="login()">
+      <mat-form-field class="w-full pt-2" color="accent" appearance="outline">
+        <mat-label color="accent">Usuario</mat-label>
+        <input formControlName="username" matInput />
+        <mat-icon matSuffix class="text-primary">account_circle</mat-icon>
+        @if (loginForm.controls['username'].hasError('required')) {
+          <mat-error>
+            <small>Usuario es <strong>requerido</strong> </small>
+          </mat-error>
+        }
+      </mat-form-field>
+      <br />
+      <mat-form-field color="accent" class="w-full pt-2" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          class="text-black"
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'" />
+        <a matSuffix mat-icon-button aria-label="Clear" (click)="hide = !hide">
+          <mat-icon class="text-primary">{{
+            hide ? 'visibility_off' : 'visibility'
+          }}</mat-icon>
+        </a>
+        @if (loginForm.controls['password'].hasError('required')) {
+          <mat-error>
+            <small>Contraseña es <strong>requerida</strong> </small>
+          </mat-error>
+        }
+      </mat-form-field>
+      <br />
+      <mat-form-field
+      color="accent"
+      class="w-full sm:w-full md:w-full lg:w-full xl:w-full"
+      appearance="outline">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="role">
+        @for (role of roles; track role) {
+          <mat-option
+            [value]="role.value"
+            (click)="chargueFloorByBuilding(role.value)">
+            {{ role.viewValue }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+      <div
+        class="w-full flex flex-column align-items-center my-3 md:my-3 lg:my-4 xl:my-4">
+        <shared-button
+          [icon]="'login'"
+          [disabled]="!loginForm.valid"
+          [typeBtn]="'submit'"
+          [color]="'accent'"
+          >Continuar</shared-button
+        >
+      </div>
+    </form>
+  </div>
+}

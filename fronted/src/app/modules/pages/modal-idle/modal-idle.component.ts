@@ -25,7 +25,6 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, MatDialogClose],
   templateUrl: './modal-idle.component.html',
-  styleUrl: './modal-idle.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalIdleComponent implements OnInit, OnDestroy {
@@ -51,14 +50,6 @@ export class ModalIdleComponent implements OnInit, OnDestroy {
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
-    /*
-    console.log('Se detectó movimiento del mouse en toda la página:', event);
-    // Puedes acceder a las coordenadas del mouse
-    console.log('Coordenadas X:', event.clientX);
-    console.log('Coordenadas Y:', event.clientY);
-    // Tu lógica aquí
-    */
-
     if (this.reservado()) {
       this.actividad.set(true);
     }

@@ -13,22 +13,8 @@
       Inicio
     </div>
   </mat-list-item>
-  <!-- ADMINISTRADOR -->
-  <!-- @if (role() === '1') { -->
-    <!-- <mat-list-item
-      class="item flex cursor-pointer w-auto pl-5"
-      routerLink="/admin/general/country"
-      routerLinkActive="active-link">
-      <div >
-        <mat-icon
-          class="mr-3"
-
-          >flag_circle</mat-icon
-        >
-        Países
-      </div>
-    </mat-list-item> -->
-  <!-- } -->
+  
+    @if (role() === '2') {
     <mat-list-item
       class="flex cursor-pointer w-auto pl-5"
       (click)="openGeneralElements()">
@@ -66,44 +52,7 @@
         }
       }
     </div>
-
-
-    <!-- <mat-list-item
-      class="flex cursor-pointer w-auto pl-5"
-      (click)="openReservationsElements()">
-      <div >
-        <mat-icon
-          class="mr-3"
-
-          >{{
-            isOpenReservationsElements() ? 'expand_less' : 'expand_more'
-          }}</mat-icon
-        >
-        Reservaciones
-      </div>
-    </mat-list-item> -->
-
-    <!-- <div>
-      @for (item of reservations; track item) {
-        @if (item.show) {
-          <mat-list-item
-            class="pl-6 flex cursor-pointer w-auto hover:bg-black-alpha-10"
-            [routerLink]="item.route"
-            routerLinkActive="active-link">
-            <div
-              >
-              <mat-icon
-                class="mr-2"
-
-                >{{ item.icon }}</mat-icon
-              >
-              {{ item.label }}
-            </div>
-          </mat-list-item>
-        }
-      }
-    </div> -->
-
+    
     <mat-list-item
       class="flex cursor-pointer w-auto pl-5"
       (click)="openGroupsElements()">
@@ -139,7 +88,9 @@
         }
       }
     </div>
+    }
 
+    @if (role() === '4') {
     <mat-list-item
       class="flex cursor-pointer w-auto pl-5"
       (click)="openReportsElements()">
@@ -175,6 +126,9 @@
         }
       }
     </div>
+}
+
+@if (role() === '1') {
     <mat-list-item
       class="flex cursor-pointer w-auto pl-5"
       (click)="openToolsElements()">
@@ -209,6 +163,7 @@
       }
     </div>
   }
+}
 </mat-list>
 
 

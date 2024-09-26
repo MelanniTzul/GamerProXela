@@ -28,6 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
 // import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { ToastAlertService } from '@core/services';
 
 interface Role {
   value: number;
@@ -70,7 +71,7 @@ export class LoginPageComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   // private branchService = inject(BranchOfficeService);
-  // private toasService = inject(ToastAlertService);
+  private toasService = inject(ToastAlertService);
   private destroyRef = inject(DestroyRef);
   private dialog = inject(MatDialog);
   private store = inject(Store);
@@ -113,26 +114,35 @@ export class LoginPageComponent {
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe({
                 next: resp => {
-                    // Verifica si la respuesta tiene un mensaje de éxito
-                    if (resp.status === "OK") {
-                        // Puedes guardar el ID de trabajador o cualquier otra información aquí
-                        // this.branchService.saveBussinesId(resp.workerId);
-                        // Guarda el nombre de usuario en cookies
-                        Cookies.set('user', this.loginForm.controls['username'].value);
+
+                    // if (resp.status === 200) {
+
+                    //     Cookies.set('user', this.loginForm.controls['username'].value);
+                    //     this.router.navigateByUrl('/home/dashboard');
+                    //     // this.toasService.warning('¡Bienvenido! ' + resp.username);
+                    //     console.log(resp, 'esto imprime');
+                    // } else {
+
+                    //     console.log(resp, 'esto imprime');
+
+                    // }
+                    Cookies.set('user', this.loginForm.controls['username'].value);
+                    Cookies.set('role', this.loginForm.controls['role'].value);
                         this.router.navigateByUrl('/home/dashboard');
                         // this.toasService.warning('¡Bienvenido! ' + resp.username);
-                    } else {
-                        // Si la respuesta no es un mensaje de éxito, muestra el mensaje de error
-                        // this.toasService.error(resp.status);
-                    }
+                        console.log(resp, 'esto imprime');
+                              this.toasService.warning('¡Bienvenido! ');
                 },
                 error: err => {
                     // Maneja errores de la petición (errores de red, etc.)
                     // this.toasService.error('Error de conexión, intente nuevamente.');
+                    console.log(err);
+                    this.toasService.error('Intentelo de nuevo ');
                 }
             });
     } else {
         // this.toasService.error('Por favor, completa todos los campos requeridos.');
+
     }
 }
 

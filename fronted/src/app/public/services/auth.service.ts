@@ -11,7 +11,10 @@ export class AuthService {
 
 
     sendLogin(data: any) {
-      return this.apiService.store('IniciarSesion', data);
+      // return this.apiService.store('/auth/login', data);
+      // return this.apiService.store('//api/auth/login', data);
+      return this.apiService.store('/login', data);
+
     }
 
 }

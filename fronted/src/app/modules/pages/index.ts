@@ -6,6 +6,8 @@ export * from './informacionProductos';
 export * from './inventario';
 export * from './layout';
 export * from './modal-idle';
+export * from './modalIngresarTrabajador';
+export * from './modalProducto';
 export * from './productos';
 export * from './productosTrasladados';
 export * from './registrarTrabajadores';

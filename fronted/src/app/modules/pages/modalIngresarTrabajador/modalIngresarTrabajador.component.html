@@ -1,0 +1,79 @@
+<mat-card-header class="flex align-items-center">
+    <shared-title
+      >{{
+        this.data.type === 'Editar' ? 'Editar' : 'Crear'
+      }}
+      usuario</shared-title
+    >
+  </mat-card-header>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+  
+      <div
+        class="w-full gap-1 flex flex-column sm:flex-column md:flex-row lg:flex-row xl:flex-row pb-2">
+        <shared-input
+          class="w-full"
+          [labelTitle]="'Usuario'"
+          [control]="$any(userForm.get('user_name'))"
+          type="text" />
+      </div>
+  
+      <div
+        class="w-full gap-1 flex flex-column sm:flex-column md:flex-row lg:flex-row xl:flex-row pb-2">
+        <!-- @if (this.data.type === 'Crear') { -->
+          <div class="w-full">
+            <shared-input
+              class="w-full"
+              [labelTitle]="'Contraseña'"
+              [control]="$any(userForm.get('password'))"
+              [type]="'password'" />
+          </div>
+        <!-- } -->
+      </div>
+  
+      @if (this.data.data !== 'checkApp' && this.data.type !== 'Editar') {
+        <div
+          class="w-full gap-1 flex flex-column sm:flex-column md:flex-row lg:flex-row xl:flex-row pb-2">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Roles</mat-label>
+            <mat-select
+              formControlName="role_id"
+              (selectionChange)="whenRolesChange()"
+              [(value)]="selectedRole">
+              @for (item of roles; track item) {
+                <mat-option [value]="item.value">
+                  {{ item.viewValue }}
+                </mat-option>
+              }
+            </mat-select>
+            @if (userForm.controls['role_id'].hasError('required')) {
+              <mat-error>
+                <small>Rol es <strong>requerido</strong> </small>
+              </mat-error>
+            }
+          </mat-form-field>
+        </div>
+      }
+     
+  
+    </mat-dialog-content>
+  
+    <mat-dialog-actions class="w-full gap-2 flex justify-content-evenly mb-3">
+      <shared-button
+        mat-dialog-close
+        [icon]="'clear'"
+        [typeBtn]="'button'"
+        [color]="'warn'"
+        >Cancelar
+      </shared-button>
+  
+      <shared-button
+        [disabled]="!userForm.valid"
+        [icon]="'save_alt'"
+        [typeBtn]="'submit'"
+        [color]="'accent'"
+        >Guardar</shared-button
+      >
+    </mat-dialog-actions>
+  </form>
+  

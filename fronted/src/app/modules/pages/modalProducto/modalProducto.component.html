@@ -1,0 +1,50 @@
+<mat-card-header class="flex align-items-center">
+    <shared-title
+      >{{ this.data.action?.countryid ? 'Editar' : 'Crear' }} producto</shared-title
+    >
+    <button
+      mat-icon-button
+      matTooltip="Limpiar formulario"
+      matTooltipPosition="right"
+      class="ml-5"
+      (click)="clearForm()">
+      <mat-icon>cleaning_services</mat-icon>
+    </button>
+  </mat-card-header>
+  <form [formGroup]="countryForm">
+    <mat-dialog-content>
+      <div
+        class="w-full gap-1 flex flex-column sm:flex-column md:flex-row lg:flex-row xl:flex-row">
+        <shared-input
+          class="w-full"
+          [labelTitle]="'Nombre'"
+          type="text"
+          [control]="$any(countryForm.get('name'))" />
+        <shared-input
+          class="visible w-full"
+          [labelTitle]="'Código'"
+          [type]="'number'"
+          [control]="$any(countryForm.get('code'))" />
+      </div>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions class="w-full gap-2 flex justify-content-evenly mb-3">
+      <shared-button
+        mat-dialog-close
+        [icon]="'clear'"
+        [typeBtn]="'button'"
+        [color]="'warn'"
+        >Cancelar</shared-button
+      >
+  
+      <shared-button
+        [disabled]="!countryForm.valid"
+        [icon]="'save_alt'"
+        [typeBtn]="'submit'"
+        [color]="'accent'"
+        (click)="submit()"
+        >Guardar</shared-button
+      >
+    </mat-dialog-actions>
+  </form>
+  

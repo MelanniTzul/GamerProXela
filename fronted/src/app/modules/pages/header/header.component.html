@@ -1,0 +1,72 @@
+<mat-toolbar
+  class="flex justify-content-between fixed z-2 h-4rem"
+  >
+  <div class="flex align-items-center">
+    <button mat-icon-button (click)="openMenu()">
+      @if (!isMenuOpened) {
+        <mat-icon
+
+          >menu
+        </mat-icon>
+      }
+      @if (isMenuOpened) {
+        <mat-icon
+
+          >arrow_back
+        </mat-icon>
+      }
+    </button>
+    <!-- @if (isLoading()) { -->
+      <img
+        src="../../../../assets/spinners/three-dots.svg"
+        alt="loading Logo"
+        class="mx-2" />
+    <!-- } -->
+    <!-- @if (!isLoading()) { -->
+      <img
+        [src]="
+
+          '../../../../../assets/icon.png'
+        "
+        alt=""
+        class="logo mx-2" />
+    <!-- } -->
+
+    <h6
+      class="text-lg font-bold pl-3 hidden md:block"
+      >
+      {{ title ?? 'SYSADMIN' }}
+    </h6>
+  </div>
+  <div
+    class="flex align-items-center"
+    >
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon
+        >
+        account_circle</mat-icon
+      >
+      <span
+
+        >Hola, <b>{{ name }}</b></span
+      >
+    </button>
+    <mat-menu #menu="matMenu">
+      <div class="flex justify-content-center flex-wrap px-4">
+        <div class="text-center">
+          <p>
+            Usuario: <strong>{{ name }}</strong>
+          </p>
+          <p>
+            Rol: <strong>{{ cookieRole }}</strong>
+          </p>
+        </div>
+      </div>
+      <mat-divider />
+      <button mat-menu-item [routerLink]="['/public/sign-out']">
+        <mat-icon matListItemIcon>exit_to_app</mat-icon>
+        Salir
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

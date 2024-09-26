@@ -20,7 +20,9 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { HeaderComponent } from '../header/header.component';
+import { ModalIdleComponent } from "../../../shared/components/modal-idle/modal-idle/modal-idle.component";
 
 @Component({
   templateUrl: './layout.component.html',
@@ -45,8 +47,10 @@ import { SidebarComponent } from '../../components/sidebar/sidebar.component';
   imports: [
     MatSidenavModule,
     SidebarComponent,
-    RouterOutlet
-  ],
+    RouterOutlet,
+    HeaderComponent,
+    ModalIdleComponent
+],
 })
 export class LayoutComponent implements  OnDestroy {
   @ViewChild('sidenav') sidenav!: MatSidenav;

@@ -7,7 +7,7 @@ import { Component, OnInit, inject } from '@angular/core';
   styles: [
     `
       .container {
-        background: var(--primary-color);
+        background: #adad;
       }
     `,
   ],

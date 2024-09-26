@@ -1,7 +1,9 @@
+
+
 <mat-list class="w-20rem md:w-23rem">
   <mat-list-item
     class="item flex cursor-pointer w-auto pl-5"
-    routerLink="/admin/dashboard"
+    routerLink="/home/dashboard"
     routerLinkActive="active-link">
     <div>
       <mat-icon
@@ -12,8 +14,8 @@
     </div>
   </mat-list-item>
   <!-- ADMINISTRADOR -->
-  @if (role() === '1') {
-    <mat-list-item
+  <!-- @if (role() === '1') { -->
+    <!-- <mat-list-item
       class="item flex cursor-pointer w-auto pl-5"
       routerLink="/admin/general/country"
       routerLinkActive="active-link">
@@ -25,8 +27,8 @@
         >
         Países
       </div>
-    </mat-list-item>
-  }
+    </mat-list-item> -->
+  <!-- } -->
     <mat-list-item
       class="flex cursor-pointer w-auto pl-5"
       (click)="openGeneralElements()">
@@ -39,7 +41,7 @@
               isOpenGeneralElements() ? 'expand_less' : 'expand_more'
             }}</mat-icon
           >
-          Empresas
+          <strong>CAJERO</strong>
         </div>
       </div>
     </mat-list-item>
@@ -66,22 +68,22 @@
     </div>
 
 
-    <mat-list-item
+    <!-- <mat-list-item
       class="flex cursor-pointer w-auto pl-5"
       (click)="openReservationsElements()">
       <div >
-        <!-- <mat-icon
+        <mat-icon
           class="mr-3"
 
           >{{
             isOpenReservationsElements() ? 'expand_less' : 'expand_more'
           }}</mat-icon
-        > -->
+        >
         Reservaciones
       </div>
-    </mat-list-item>
+    </mat-list-item> -->
 
-    <div>
+    <!-- <div>
       @for (item of reservations; track item) {
         @if (item.show) {
           <mat-list-item
@@ -100,7 +102,7 @@
           </mat-list-item>
         }
       }
-    </div>
+    </div> -->
 
     <mat-list-item
       class="flex cursor-pointer w-auto pl-5"
@@ -113,7 +115,7 @@
             isOpenGroupsElements() ? 'expand_less' : 'expand_more'
           }}</mat-icon
         >
-        Grupos
+        <strong>PRODUCTOS</strong>
       </div>
     </mat-list-item>
 
@@ -149,7 +151,7 @@
             isOpenReportsElements() ? 'expand_less' : 'expand_more'
           }}</mat-icon
         >
-        Reportes
+        <strong>INVENTARIO</strong>
       </div>
     </mat-list-item>
 
@@ -182,7 +184,7 @@
 
           >{{ isOpenToolsElements() ? 'expand_less' : 'expand_more' }}</mat-icon
         >
-        Configuración
+        <strong>ADMINISTRADOR</strong>
       </div>
     </mat-list-item>
   @if (isOpenToolsElements()) {

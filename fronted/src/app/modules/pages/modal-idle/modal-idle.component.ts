@@ -17,12 +17,13 @@ import {
   MatDialogClose,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { ModalComponent } from './modal/modal/modal.component';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-idle',
   standalone: true,
-  imports: [CommonModule, MatDialogClose, ],
+  imports: [CommonModule, MatDialogClose],
   templateUrl: './modal-idle.component.html',
   styleUrl: './modal-idle.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -92,20 +93,20 @@ export class ModalIdleComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
-    // const dialogRef = this.dialog.open(ModalComponent, {
-    //   //Objeto del workplace
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === 'Refresh') {
-    //     this.reservado.set(true);
-    //     this.actividad.set(true);
-    //   }
-    //   if (result === 'Cerrar') {
-    //     this.reservado.set(false);
-    //     this.actividad.set(false);
-    //     this.router.navigate(['/public/sign-out']);
-    //   }
-    // });
-    // dialogRef.disableClose = true;
+    const dialogRef = this.dialog.open(ModalComponent, {
+      //Objeto del workplace
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'Refresh') {
+        this.reservado.set(true);
+        this.actividad.set(true);
+      }
+      if (result === 'Cerrar') {
+        this.reservado.set(false);
+        this.actividad.set(false);
+        this.router.navigate(['/public/sign-out']);
+      }
+    });
+    dialogRef.disableClose = true;
   }
 }

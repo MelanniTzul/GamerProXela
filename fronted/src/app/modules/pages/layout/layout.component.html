@@ -1,11 +1,8 @@
-<!-- <app-admin-header
-  [themePrimary]="themeService.currentTheme()?.primary"
-  [themeItemNavbar]="themeService.currentTheme()?.itemNavBar"
-  [title]="currentCompany()"
+<app-admin-header
   [name]="username"
-  [isMenuOpened]="isShowSidebar()" /> -->
+  [isMenuOpened]="isShowSidebar()" />
 <mat-sidenav-container class="w-full">
-  <!-- <app-modal-idle /> -->
+  <app-modal-idle />
   <mat-sidenav
     #sidenav
     mode="side"
@@ -13,9 +10,7 @@
     class="layout-sidebar mt-7"
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [fixedInViewport]="mobileQuery.matches">
-    <!-- <admin-sidebar
-      [baseColor]="themeService.currentTheme()?.general"
-      [accentColor]="themeService.currentTheme()?.accent" /> -->
+    <admin-sidebar />
   </mat-sidenav>
   <mat-sidenav-content class="layout-content mt-7 px-5">
     <router-outlet />
